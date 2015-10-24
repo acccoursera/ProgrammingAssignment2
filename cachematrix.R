@@ -1,9 +1,10 @@
-## Put comments here that give an overall description of what your
-## functions do
-
-## Write a short comment describing this function
+## Needed to modify the basic template to check that 
+## the cached object actually exists and to create
+## it if it does not
 
 makeCacheMatrix <- function(x){
+  # if m does not exist then 
+  # we need to create it
   if(!exists("m")) {
     m <<- NULL
   }
@@ -26,12 +27,14 @@ makeCacheMatrix <- function(x){
 
 
 cacheSolve <- function(x){    
-    
+  ## Check if the data is cached already
   if(exists("m") && !is.null(m)) {
     message("getting cached data")
     return(m)
   }
   
+  ## only call this function if 
+  ## m is not cached already
   m <- x$getmatrixinverse()
   
   data <- x$get()
